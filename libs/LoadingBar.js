@@ -18,7 +18,7 @@ class LoadingBar{
 		barBase.style.width = '50%';
 		barBase.style.minWidth = '250px';
 		barBase.style.borderRadius = '10px';
-		barBase.style.height = '15px';
+		barBase.style.height = '20px';
 		this.domElement.appendChild(barBase);
 
 		const bar = document.createElement("div");
@@ -36,8 +36,8 @@ class LoadingBar{
 		loadingText.style.top = '50%';
 		loadingText.style.left = '50%';
 		loadingText.style.transform = 'translate(-50%, -50%)';
-		loadingText.style.color = '#4B0082';
-		loadingText.style.fontSize = '12px';
+		loadingText.style.color = '#00BFFF';
+		loadingText.style.fontSize = '15px';
 		barBase.appendChild(loadingText);
 		this.loadingText = loadingText;
 		
