@@ -12,6 +12,7 @@ class LoadingBar{
 		this.domElement.style.alignItems = 'center';
 		this.domElement.style.justifyContent = 'center';
 		this.domElement.style.zIndex = '1111';
+
 		const barBase = document.createElement("div");
 		barBase.style.background = '#000000';
 		barBase.style.width = '50%';
@@ -19,6 +20,7 @@ class LoadingBar{
 		barBase.style.borderRadius = '10px';
 		barBase.style.height = '15px';
 		this.domElement.appendChild(barBase);
+
 		const bar = document.createElement("div");
 		bar.style.background = '#ffd700';
 		bar.style.width = '50%';
@@ -27,6 +29,17 @@ class LoadingBar{
 		bar.style.width = '0';
 		barBase.appendChild(bar);
 		this.progressBar = bar;
+
+		const loadingText = document.createElement("span");
+		loadingText.innerText = 'Loading...'; // Default loading text
+		loadingText.style.position = 'absolute';
+		loadingText.style.top = '50%';
+		loadingText.style.left = '50%';
+		loadingText.style.transform = 'translate(-50%, -50%)';
+		loadingText.style.color = '#4B0082';
+		loadingText.style.fontSize = '12px';
+		barBase.appendChild(loadingText);
+		this.loadingText = loadingText;
 		
 		document.body.appendChild(this.domElement);
 		
