@@ -13,7 +13,7 @@ class LoadingBar{
 		this.domElement.style.justifyContent = 'center';
 		this.domElement.style.zIndex = '1111';
 		const barBase = document.createElement("div");
-		barBase.style.background = '#add8e6';
+		barBase.style.background = '#ffd700';
 		barBase.style.width = '50%';
 		barBase.style.minWidth = '250px';
 		barBase.style.borderRadius = '10px';
