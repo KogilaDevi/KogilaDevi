@@ -46,45 +46,16 @@
             }
         });
 
-        // Custom draggable component
-        AFRAME.registerComponent('draggable', {
+        AFRAME.registerComponent('skybox-manager', {
             init: function () {
-                this.el.addEventListener('mousedown', (event) => {
-                    this.dragging = true;
-                    this.previousMousePosition = event.detail.intersection.point;
-                });
-
-                this.el.sceneEl.addEventListener('mousemove', (event) => {
-                    if (this.dragging) {
-                        const newPosition = event.detail.intersection.point;
-                        const deltaX = newPosition.x - this.previousMousePosition.x;
-                        const deltaY = newPosition.y - this.previousMousePosition.y;
-                        const deltaZ = newPosition.z - this.previousMousePosition.z;
-                        
-                        const currentPosition = this.el.object3D.position;
-                        this.el.object3D.position.set(currentPosition.x + deltaX, currentPosition.y + deltaY, currentPosition.z + deltaZ);
-                        
-                        this.previousMousePosition = newPosition;
-                    }
-                });
-
-                this.el.addEventListener('mouseup', () => {
-                    this.dragging = false;
-                });
-            }
-        });
-
-        // Ensure skybox persists
-        AFRAME.registerSystem('persistentSkybox', {
-            init: function () {
-                const skybox = document.querySelector('a-sky');
+                const skybox = document.querySelector('#skybox');
                 if (skybox) {
                     skybox.addEventListener('loaded', () => {
                         this.skybox = skybox;
+                        this.skybox.setAttribute('visible', true);
                     });
                 }
             },
-
             tick: function () {
                 if (this.skybox) {
                     // Ensure skybox is rendered properly
@@ -108,17 +79,10 @@
             
             // Add the skybox
             const sky = document.createElement('a-sky');
+            sky.setAttribute('id', 'skybox');
             sky.setAttribute('src', 'assets/skybox.jpg');
             sky.setAttribute('rotation', '0 -90 0'); // Rotate sky if necessary
             scene.appendChild(sky);
-            
-            // Add a draggable sphere for debugging with smaller size
-            const sphere = document.createElement('a-sphere');
-            sphere.setAttribute('position', '0 1.25 -3');
-            sphere.setAttribute('radius', '0.5'); // Smaller radius
-            sphere.setAttribute('color', '#FF0000');
-            sphere.setAttribute('draggable', ''); // Make sphere draggable
-            scene.appendChild(sphere);
             
             // Add the camera rig with teleportation controls
             const cameraRig = document.createElement('a-entity');
