@@ -5,7 +5,7 @@ class LoadingBar {
 			backgroundColor = '#000',
 			opacity = 0.7,
 			barBaseColor = '#aaa',
-			barColor = '#22a',
+			barColor = '#ADD8E6',
 			minWidth = '250px',
 			width = '50%',
 			height = '15px',
