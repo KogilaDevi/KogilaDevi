@@ -49,18 +49,18 @@
         // Ensure skybox persists
         AFRAME.registerSystem('persistentSkybox', {
             init: function () {
-                const skybox = document.querySelector('#skybox');
-                if (skybox) {
-                    skybox.addEventListener('loaded', () => {
-                        this.skybox = skybox;
-                    });
-                }
+                this.el.addEventListener('enter-vr', () => {
+                    const skybox = document.querySelector('#skybox');
+                    if (skybox) {
+                        skybox.setAttribute('visible', true);
+                    }
+                });
             },
 
             tick: function () {
-                if (this.skybox) {
-                    // Ensure skybox is rendered properly
-                    this.skybox.setAttribute('visible', true);
+                const skybox = document.querySelector('#skybox');
+                if (skybox) {
+                    skybox.setAttribute('visible', true);
                 }
             }
         });
@@ -104,4 +104,5 @@
     </script>
 </body>
 </html>
+
 
