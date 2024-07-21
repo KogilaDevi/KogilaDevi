@@ -3,11 +3,12 @@
 <head>
     <title>VR Architectural Walkthrough with WebXR</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <link rel="apple-touch-icon" sizes="180x180" href="./css/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./css/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./css/favicon/favicon-16x16.png">
-    <link rel="manifest" href="./css/favicon/site.webmanifest">
-    <link rel="mask-icon" href="./css/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <!-- Updated favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./asset/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./asset/skybox-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./asset/skybox-16x16.png">
+    <link rel="manifest" href="./asset/site.webmanifest">
+    <link rel="mask-icon" href="./asset/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <!-- end favicon -->
@@ -16,44 +17,30 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #6a1b9a; /* Purple background */
-            font-family: Arial, sans-serif;
-            color: #fff; /* White text color for visibility */
-            text-align: center;
-            padding-top: 50px;
+            background-color: purple; /* Changed background color to purple */
+            color: white; /* Changed text color to white for contrast */
+            font-family: Arial, sans-serif; /* Set a default font */
+            text-align: center; /* Center align text */
+            height: 100vh; /* Full viewport height */
+            display: flex; /* Use flexbox for centering */
+            align-items: center; /* Center align items vertically */
+            justify-content: center; /* Center align items horizontally */
         }
         h1 {
-            font-size: 2em;
+            margin: 0; /* Remove default margin */
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to the VR Architectural Walkthrough!</h1>
-    <p>Experience a virtual tour with WebXR technology.</p>
-
-    <!-- A-Frame Scene -->
-    <a-scene>
-        <!-- Skybox using a single image -->
-        <a-sky src="#skybox"></a-sky>
-    </a-scene>
-
-    <!-- Skybox image -->
-    <a-assets>
-        <img id="skybox" src="assets/skybox.jpg">
-    </a-assets>
-
-    <!-- A-Frame and WebXR Scripts -->
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <!-- Additional scripts -->
+    <h1>Welcome to the VR Architectural Walkthrough!</h1> <!-- Added welcome text -->
     <script src="./libs/fas.js"></script>
     <script type="module">
         import { App } from './app.js';
         
-        document.addEventListener("DOMContentLoaded", function(){
+        document.addEventListener("DOMContentLoaded", function() {
             const app = new App();
             window.app = app;
         });
     </script>
 </body>
 </html>
-
