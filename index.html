@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
     <title>VR Architectural Walkthrough with WebXR</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="apple-touch-icon" sizes="180x180" href="./css/favicon/apple-touch-icon.png">
@@ -11,58 +10,65 @@
     <link rel="mask-icon" href="./css/favicon/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
+    <!-- end favicon -->
     <link type="text/css" rel="stylesheet" href="./css/common.css">
     <style>
         body {
             margin: 0;
             padding: 0;
+            background-color: #6a1b9a; /* Change background color to purple */
+            font-family: Arial, sans-serif;
+            color: #fff; /* Text color for better visibility against purple */
+            text-align: center;
+            padding-top: 50px;
         }
-        a-scene {
-            width: 100vw;
-            height: 100vh;
-            display: block;
+        h1 {
+            font-size: 2em;
+        }
+        .enter-vr-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: #333; /* Text color for button */
+            background-color: #b0bec5; /* Button color changed to grey */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .enter-vr-btn:hover {
+            background-color: #90a4ae; /* Darker grey on hover */
         }
     </style>
-    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
 </head>
 <body>
-    <a-scene embedded>
-        <!-- Skybox -->
-        <a-sky id="skybox" src="assets/skybox.jpg" rotation="0 -90 0"></a-sky>
+    <h1>Welcome to the VR Architectural Walkthrough!</h1>
+    <p>Experience a virtual tour with WebXR technology.</p>
+    <a href="#" class="enter-vr-btn">Enter VR</a>
+
+    <!-- A-Frame Scene -->
+    <a-scene>
+        <!-- Skybox using a single image -->
+        <a-sky src="#skybox" rotation="0 -90 0"></a-sky>
         
-        <!-- Camera Rig with Teleportation Controls -->
-        <a-entity id="cameraRig" position="0 1.6 0">
-            <a-camera id="camera" wasd-controls-enabled="true" look-controls-enabled="true"></a-camera>
-            <a-entity teleport-controls="cameraRig: #cameraRig; teleportOrigin: #camera;"></a-entity>
-        </a-entity>
+        <!-- Add other 3D content here -->
 
-        <!-- Animated entity to demonstrate movement -->
-        <a-entity id="movingEntity" geometry="primitive: box" material="color: red" position="0 1 -5">
-            <!-- Animation to move the entity -->
-            <a-animation attribute="position"
-                         from="0 1 -5"
-                         to="0 1 5"
-                         dur="10000"
-                         repeat="indefinite"
-                         direction="alternate"></a-animation>
-        </a-entity>
-
-        <!-- Text element -->
-        <a-text value="Welcome to the VR Walkthrough!" 
-                align="center" 
-                color="#FFF" 
-                position="0 2 -3"
-                scale="3 3 3">
-        </a-text>
-
-        <!-- Another text element for additional information -->
-        <a-text value="Explore the scene and use teleportation controls to navigate." 
-                align="center" 
-                color="#FFF" 
-                position="0 1 -3"
-                scale="2 2 2">
-        </a-text>
     </a-scene>
+
+    <!-- Skybox image -->
+    <a-assets>
+        <img id="skybox" src="assets/skybox.jpg">
+    </a-assets>
+
+    <script src="./libs/fas.js"></script>
+    <script type="module">
+        import { App } from './app.js';
+        
+        document.addEventListener("DOMContentLoaded", function(){
+            const app = new App();
+            window.app = app;
+        });
+    </script>
 </body>
 </html>
 
