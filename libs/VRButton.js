@@ -171,7 +171,7 @@ class VRButton{
         button.style.right = '0px';
         button.style.bottom = '0px';
         button.style.border = '';
-        button.style.opacity = '1';
+        button.style.opacity = '2';
         button.style.fontSize = '13px';
         button.textContent = 'VR NOT SUPPORTED';
         
@@ -187,7 +187,7 @@ class VRButton{
         element.style.border = '1px solid #fff';
         element.style.borderRadius = '4px';
         element.style.background = (active) ? 'rgba(20,150,80,1)' : 'rgba(180,20,20,1)';
-        element.style.color = '#fff';
+        element.style.color ='#e0bbff' ;
         element.style.font = `normal ${fontSize}px sans-serif`;
         element.style.textAlign = 'center';
         element.style.opacity = '0.5';
