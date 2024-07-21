@@ -35,6 +35,17 @@
             <a-camera id="camera" wasd-controls-enabled="true" look-controls-enabled="true"></a-camera>
             <a-entity teleport-controls="cameraRig: #cameraRig; teleportOrigin: #camera;"></a-entity>
         </a-entity>
+
+        <!-- Animated entity to demonstrate movement -->
+        <a-entity id="movingEntity" geometry="primitive: box" material="color: red" position="0 1 -5">
+            <!-- Animation to move the entity -->
+            <a-animation attribute="position"
+                         from="0 1 -5"
+                         to="0 1 5"
+                         dur="10000"
+                         repeat="indefinite"
+                         direction="alternate"></a-animation>
+        </a-entity>
     </a-scene>
 </body>
 </html>
