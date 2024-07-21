@@ -1,52 +1,80 @@
-class LoadingBar{
-	constructor(options){
+class LoadingBar {
+	constructor(options = {}) {
+		// Destructure options with default values
+		const {
+			backgroundColor = '#000',
+			opacity = 0.7,
+			barBaseColor = '#aaa',
+			barColor = '#22a',
+			minWidth = '250px',
+			width = '50%',
+			height = '15px',
+			borderRadius = '10px',
+			zIndex = '1111',
+			showPercentage = true
+		} = options;
+
 		this.domElement = document.createElement("div");
 		this.domElement.style.position = 'fixed';
 		this.domElement.style.top = '0';
 		this.domElement.style.left = '0';
 		this.domElement.style.width = '100%';
 		this.domElement.style.height = '100%';
-		this.domElement.style.background = '#000';
-		this.domElement.style.opacity = '0.7';
+		this.domElement.style.background = backgroundColor;
+		this.domElement.style.opacity = opacity.toString();
 		this.domElement.style.display = 'flex';
 		this.domElement.style.alignItems = 'center';
 		this.domElement.style.justifyContent = 'center';
-		this.domElement.style.zIndex = '1111';
-		const barBase = document.createElement("div");
-		barBase.style.background = '#aaa';
-		barBase.style.width = '50%';
-		barBase.style.minWidth = '250px';
-		barBase.style.borderRadius = '10px';
-		barBase.style.height = '15px';
-		this.domElement.appendChild(barBase);
+		this.domElement.style.zIndex = zIndex;
+
+		const barContainer = document.createElement("div");
+		barContainer.style.background = barBaseColor;
+		barContainer.style.width = width;
+		barContainer.style.minWidth = minWidth;
+		barContainer.style.borderRadius = borderRadius;
+		barContainer.style.height = height;
+		barContainer.style.position = 'relative';
+		this.domElement.appendChild(barContainer);
+
 		const bar = document.createElement("div");
-		bar.style.background = '#22a';
-		bar.style.width = '50%';
-		bar.style.borderRadius = '10px';
+		bar.style.background = barColor;
+		bar.style.borderRadius = borderRadius;
 		bar.style.height = '100%';
 		bar.style.width = '0';
-		barBase.appendChild(bar);
+		bar.style.transition = 'width 0.3s ease';  // Smooth transition
+		barContainer.appendChild(bar);
 		this.progressBar = bar;
-		
+
+		if (showPercentage) {
+			const percentageLabel = document.createElement("div");
+			percentageLabel.style.position = 'absolute';
+			percentageLabel.style.top = '50%';
+			percentageLabel.style.left = '50%';
+			percentageLabel.style.transform = 'translate(-50%, -50%)';
+			percentageLabel.style.color = '#fff';
+			percentageLabel.style.fontSize = '14px';
+			percentageLabel.style.fontFamily = 'Arial, sans-serif';
+			barContainer.appendChild(percentageLabel);
+			this.percentageLabel = percentageLabel;
+		}
+
 		document.body.appendChild(this.domElement);
-		
-		function onprogress(delta){
-			const progress = delta*100;
-			loader.progressBar.style.width = `${progress}%`;
-		}
 	}
-	
-	set progress(delta){
-		const percent = delta*100;
+
+	set progress(delta) {
+		const percent = Math.min(Math.max(delta * 100, 0), 100);  // Clamp between 0 and 100
 		this.progressBar.style.width = `${percent}%`;
-	}
-	
-	set visible(value){
-		if (value){
-			this.domElement.style.display = 'flex';
-		}else{
-			this.domElement.style.display = 'none';
+		if (this.percentageLabel) {
+			this.percentageLabel.innerText = `${Math.floor(percent)}%`;
 		}
+	}
+
+	set visible(value) {
+		this.domElement.style.display = value ? 'flex' : 'none';
+	}
+
+	destroy() {
+		this.domElement.remove();
 	}
 }
 
