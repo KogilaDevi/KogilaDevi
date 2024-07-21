@@ -25,31 +25,16 @@
         h1 {
             font-size: 2em;
         }
-        .enter-vr-btn {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 1.2em;
-            color: #333; /* Dark text color */
-            background-color: #b0bec5; /* Grey button color */
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .enter-vr-btn:hover {
-            background-color: #90a4ae; /* Darker grey on hover */
-        }
     </style>
 </head>
 <body>
     <h1>Welcome to the VR Architectural Walkthrough!</h1>
     <p>Experience a virtual tour with WebXR technology.</p>
-    <a href="#" class="enter-vr-btn">Enter VR</a>
 
     <!-- A-Frame Scene -->
     <a-scene>
         <!-- Skybox using a single image -->
-        <a-sky src="#skybox" rotation="0 -90 0"></a-sky>
+        <a-sky src="#skybox"></a-sky>
         
         <!-- Add other 3D content here -->
 
@@ -73,4 +58,5 @@
     </script>
 </body>
 </html>
+
 
