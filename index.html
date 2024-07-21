@@ -22,6 +22,24 @@
             height: 100vh;
             display: block;
         }
+        #custom-loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 20px;
+            background: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            display: none;
+        }
+        #custom-loading-bar {
+            height: 100%;
+            width: 0;
+            background: #4caf50;
+            transition: width 0.2s;
+        }
     </style>
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
 </head>
@@ -38,7 +56,6 @@
 
         <!-- Animated entity to demonstrate movement -->
         <a-entity id="movingEntity" geometry="primitive: box" material="color: red" position="0 1 -5">
-            <!-- Animation to move the entity -->
             <a-animation attribute="position"
                          from="0 1 -5"
                          to="0 1 5"
@@ -47,6 +64,32 @@
                          direction="alternate"></a-animation>
         </a-entity>
     </a-scene>
+
+    <!-- Custom Loading Bar -->
+    <div id="custom-loading">
+        <div id="custom-loading-bar"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingElement = document.getElementById('custom-loading');
+            const loadingBarElement = document.getElementById('custom-loading-bar');
+            
+            // Show loading bar
+            AFRAME.scenes[0].addEventListener('loaded', function() {
+              loadingElement.style.display = 'none';
+            });
+            
+            // Update loading bar
+            AFRAME.scenes[0].addEventListener('progress', function(e) {
+              const progress = (e.detail.totalLoaded / e.detail.total) * 100;
+              loadingBarElement.style.width = progress + '%';
+            });
+            
+            // Show loading bar initially
+            loadingElement.style.display = 'block';
+        });
+    </script>
 </body>
 </html>
 
