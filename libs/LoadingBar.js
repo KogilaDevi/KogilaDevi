@@ -7,13 +7,13 @@ class LoadingBar{
 		this.domElement.style.width = '100%';
 		this.domElement.style.height = '100%';
 		this.domElement.style.background = '#e0bbff';
-		this.domElement.style.opacity = '0.9';
+		this.domElement.style.opacity = '1';
 		this.domElement.style.display = 'flex';
 		this.domElement.style.alignItems = 'center';
 		this.domElement.style.justifyContent = 'center';
 		this.domElement.style.zIndex = '1111';
 		const barBase = document.createElement("div");
-		barBase.style.background = '#aaa';
+		barBase.style.background = '#add8e6';
 		barBase.style.width = '50%';
 		barBase.style.minWidth = '250px';
 		barBase.style.borderRadius = '10px';
