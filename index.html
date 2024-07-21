@@ -54,10 +54,19 @@
             // Create and append the A-Frame scene dynamically
             const scene = document.createElement('a-scene');
             
-            // Add the skybox with purple color
+            // Add the skybox
             const sky = document.createElement('a-sky');
-            sky.setAttribute('color', '#800080'); // Purple color
+            sky.setAttribute('src', 'assets/skybox.jpg');
             scene.appendChild(sky);
+            
+            // Add a plane to simulate background color
+            const backgroundPlane = document.createElement('a-plane');
+            backgroundPlane.setAttribute('color', '#800080'); // Purple color
+            backgroundPlane.setAttribute('width', '100');
+            backgroundPlane.setAttribute('height', '100');
+            backgroundPlane.setAttribute('position', '0 0 -10');
+            backgroundPlane.setAttribute('rotation', '-90 0 0');
+            scene.appendChild(backgroundPlane);
             
             // Add the camera rig with teleportation controls
             const cameraRig = document.createElement('a-entity');
